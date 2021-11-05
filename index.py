@@ -1,3 +1,4 @@
+
 from tkinter import *
 import tkinter as tk
 import os
@@ -9,8 +10,16 @@ class Tela():
 
     def __init__(self, master):
 
+
+        cab = tk.PhotoImage(file="cab.png")
+        self.labelcab = tk.Label(janela, image=cab)
+        self.labelcab.cab = cab
+        self.labelcab.place(x=300,y=30)
         
-     
+        rod = tk.PhotoImage(file="rod.png")
+        self.labelrod = tk.Label(janela, image=rod)
+        self.labelrod.rod = rod
+        self.labelrod.place(x=0,y=660)
 
 
         hc06 = tk.PhotoImage(file="hc06.png")
@@ -20,7 +29,6 @@ class Tela():
         self.labelhc06.bind("<Enter>", self.infohc06)
         self.labelhc06.bind("<Leave>", self.fecharinfohc06)
         self.labelhc06.bind("<Button-1>", self.clickhc06)
-     
 
 
         teclado_matricial = tk.PhotoImage(file="teclado_matricial.png")
@@ -78,6 +86,22 @@ class Tela():
         self.labelvoz.bind("<Enter>", self.infovoz)
         self.labelvoz.bind("<Leave>", self.fecharvoz)
         self.labelvoz.bind("<Button-1>", self.clickvoz)
+
+
+
+        tutorial = tk.Button(janela, text="Montagem Interativa")
+        tutorial["font"] = ("Lucida console", "20")
+        tutorial.config(bg="red", foreground="white")
+        tutorial.place(x=250,y=600)
+
+        self.valores = tk.Button(janela, text="Preços de componentes")
+        self.valores["font"] = ("Lucida console", "20")
+        self.valores.config(bg="darkgreen", foreground="white")
+        self.valores.bind("<Button-1>", self.precos)
+        self.valores.place(x=620,y=600)
+
+        
+       
 
     def infohc06(self, event):
         infoHc06 = tk.PhotoImage(file="infoHc06.png")
@@ -383,12 +407,61 @@ class Tela():
         janela7.title("RELAY")
         janela7.mainloop()
 
+   
+    def precos(self, event):
+
+        janela_precos = tk.Tk()
+
+        cab_precos = tk.PhotoImage(master=janela_precos, file="cab_precos.png")
+        self.labelcab_precos = tk.Label(janela_precos, image=cab_precos)
+        self.labelcab_precos.cab_precos = cab_precos
+        self.labelcab_precos.place(x=100,y=20)
+
+        self.busca = tk.Label(janela_precos, text="Componente:")
+        self.busca["font"] = ("Arial ", "18")
+        self.busca.place(x=30, y=140)
+
+        self.buscaE = tk.Entry(janela_precos)
+        self.buscaE["font"] = ("Arial ", "18")
+        self.buscaE.config(foreground="red", bg="lightgrey")
+        self.buscaE.place(x=190, y=140)
+
+        self.bt_buscar = tk.Button(janela_precos, text="Buscar")
+        self.bt_buscar["font"] = ("lucida console", "17")
+        self.bt_buscar.config(foreground="white", bg="black")
+        self.bt_buscar.place(x=265, y=190)
+        self.bt_buscar.bind("<Button-1>", self.busca_google)
+
+        fechar = tk.PhotoImage(master=janela_precos, file="fechar.png")
+        self.labelfechar = tk.Label(janela_precos, image=fechar)
+        self.labelfechar.fechar = fechar
+        self.labelfechar.place(x=455, y=135)
+        self.labelfechar.bind("<Button-1>", self.fechar_busca)
+
+        janela_precos.config(bg="white")
+        janela_precos.resizable(width=False, height=False)
+        janela_precos.geometry("500x260+380+290")
+        janela_precos.title("Pesquisar valores")
+        janela_precos.mainloop()
+
+    def busca_google(self, event):
+
+        c = self.buscaE.get()
+
+        link = ("https://www.google.com/search?q=intext%3A{}+intext%3Apre%C3%A7o").format(c)
+        os.system("start chrome "+link)
+
+    def fechar_busca(self, event):
+
+        self.buscaE.delete(0, "end")
+
+        
 
 janela = tk.Tk()
 Tela(janela)
 
 janela.config(bg="white")
-janela.geometry("1255x800+10+2")
+janela.geometry("1255x740+10+2")
 janela.title("Componentes de Automação Residencial")
 janela.resizable(width=False, height=False)
 janela.mainloop()
