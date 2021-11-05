@@ -63,6 +63,14 @@ class Tela():
         self.labelrele.bind("<Leave>", self.fecharrele)
         self.labelrele.bind("<Button-1>", self.clickrele)
 
+        lcd = tk.PhotoImage(file="lcd.png")
+        self.labellcd = tk.Label(janela, image=lcd)
+        self.labellcd.lcd = lcd
+        self.labellcd.place(x=250,y=400)
+        self.labellcd.bind("<Enter>", self.infolcd)
+        self.labellcd.bind("<Leave>", self.fecharlcd)
+        self.labellcd.bind("<Button-1>", self.clicklcd)
+
     def infohc06(self, event):
         infoHc06 = tk.PhotoImage(file="infoHc06.png")
         self.labelhc062 = tk.Label(janela, image=infoHc06)
@@ -287,6 +295,43 @@ class Tela():
         janela_rele = tk.PhotoImage(master=janela7, file="janela_rele.png")
         labeljanela_rele = tk.Label(janela7, image=janela_rele)
         labeljanela_rele.place(x=50,y=30)
+
+        janela7.resizable(width=False, height=False)
+        janela7.geometry("1000x600+100+20")
+        janela7.title("RELAY")
+        janela7.mainloop()
+
+    def infolcd(self, event):
+        infolcd = tk.PhotoImage(file="infolcd.png")
+        self.labellcd2 = tk.Label(janela, image=infolcd)
+        self.labellcd2.infolcd = infolcd
+        self.labellcd2.place(x=250,y=80)
+
+        self.lcd = tk.Label(janela, text="Clique para saber mais informações")
+        self.lcd["font"] = ("Arial", "12")
+        self.lcd.config(bg="green", foreground="white")
+        self.lcd.place(x=350,y=54)
+
+        self.labellcd.config(bg="green")
+
+        janela.config(cursor="hand2")
+    
+    def fecharlcd(self, event):
+   
+        
+        self.lcd.place(x=1800,y=320)
+        self.labellcd2.place(x=1800,y=320)
+        self.labellcd.config(bg="white")
+        janela.config(cursor="")
+
+    def clicklcd(self, event):
+
+
+        janela7 = tk.Tk()
+
+        janela_lcd = tk.PhotoImage(master=janela7, file="janela_lcd.png")
+        labeljanela_lcd = tk.Label(janela7, image=janela_lcd)
+        labeljanela_lcd.place(x=10,y=30)
 
         janela7.resizable(width=False, height=False)
         janela7.geometry("1000x600+100+20")
