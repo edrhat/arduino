@@ -9,7 +9,10 @@ class Tela():
 
     def __init__(self, master):
 
-    
+        
+     
+
+
         hc06 = tk.PhotoImage(file="hc06.png")
         self.labelhc06 = tk.Label(janela, image=hc06)
         self.labelhc06.hc06 = hc06
@@ -17,6 +20,8 @@ class Tela():
         self.labelhc06.bind("<Enter>", self.infohc06)
         self.labelhc06.bind("<Leave>", self.fecharinfohc06)
         self.labelhc06.bind("<Button-1>", self.clickhc06)
+     
+
 
         teclado_matricial = tk.PhotoImage(file="teclado_matricial.png")
         self.labelteclado = tk.Label(janela, image=teclado_matricial)
@@ -50,6 +55,14 @@ class Tela():
         self.labelultrasonico.bind("<Leave>", self.fecharultrasonico)
         self.labelultrasonico.bind("<Button-1>", self.clickultrasonico)
 
+        rele = tk.PhotoImage(file="rele.png")
+        self.labelrele = tk.Label(janela, image=rele)
+        self.labelrele.rele = rele
+        self.labelrele.place(x=40,y=400)
+        self.labelrele.bind("<Enter>", self.inforele)
+        self.labelrele.bind("<Leave>", self.fecharrele)
+        self.labelrele.bind("<Button-1>", self.clickrele)
+
     def infohc06(self, event):
         infoHc06 = tk.PhotoImage(file="infoHc06.png")
         self.labelhc062 = tk.Label(janela, image=infoHc06)
@@ -64,6 +77,8 @@ class Tela():
         self.labelhc06.config(bg="green")
 
         janela.config(cursor="hand2")
+
+    
 
     def fecharinfohc06(self, event):
    
@@ -241,7 +256,42 @@ class Tela():
         janela6.title("JOYSTICK")
         janela6.mainloop()
 
-     
+    def inforele(self, event):
+        inforele = tk.PhotoImage(file="inforele.png")
+        self.labelrele2 = tk.Label(janela, image=inforele)
+        self.labelrele2.inforele = inforele
+        self.labelrele2.place(x=40,y=80)
+
+        self.rele = tk.Label(janela, text="Clique para saber mais informações")
+        self.rele["font"] = ("Arial", "12")
+        self.rele.config(bg="green", foreground="white")
+        self.rele.place(x=100,y=60)
+
+        self.labelrele.config(bg="green")
+
+        janela.config(cursor="hand2")
+    
+    def fecharrele(self, event):
+   
+        
+        self.rele.place(x=1800,y=320)
+        self.labelrele2.place(x=1800,y=320)
+        self.labelrele.config(bg="white")
+        janela.config(cursor="")
+
+    def clickrele(self, event):
+
+
+        janela7 = tk.Tk()
+
+        janela_rele = tk.PhotoImage(master=janela7, file="janela_rele.png")
+        labeljanela_rele = tk.Label(janela7, image=janela_rele)
+        labeljanela_rele.place(x=50,y=30)
+
+        janela7.resizable(width=False, height=False)
+        janela7.geometry("1000x600+100+20")
+        janela7.title("RELAY")
+        janela7.mainloop()
 
 
 janela = tk.Tk()
