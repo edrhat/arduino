@@ -4,6 +4,7 @@ import tkinter as tk
 import os
 
 #Imagens TAMANHO: 175x120
+#Imagens simuladoTAMANHO: 125x100
 #TAMANHO DA JANELAS SECUNDÁRIAS 1000x600
 
 class Tela():
@@ -458,39 +459,109 @@ class Tela():
 
         self.buscaE.delete(0, "end")
 
+
+    
     def iniciarSimulador(self, event):
 
         janelaSimulador = tk.Tk()
 
+        self.componentes = tk.Label(janelaSimulador, text="Componentes disponíveis")
+        self.componentes["font"] = ("Arial black", "17")
+        self.componentes.config(bg="white", foreground="red")
+        self.componentes.place(x=920, y=50)
+
+    def moverArduino(self, event):
+
+        labelarduinoGrande.config(bg="green")
+        x, y = event.x, event.y
+        janelaSimulador.bind("<B1-Motion>")
+        labelarduinoGrande.place(x=x, y=y)
+        
+    
+
+        
         arduinoGrande = tk.PhotoImage(master=janelaSimulador, file="arduinoGrande.png")
-        self.labelarduinoGrande = tk.Label(janelaSimulador, image=arduinoGrande)
-        self.labelarduinoGrande.arduinoGrande = arduinoGrande
-        self.labelarduinoGrande.place(x=100, y=135)
-        self.labelarduinoGrande.bind("<B1-Motion>", self.moverArduino)
+        labelarduinoGrande = tk.Label(janelaSimulador, image=arduinoGrande)
+        labelarduinoGrande.arduinoGrande = arduinoGrande
+        labelarduinoGrande.place(x=50, y=135)
+        labelarduinoGrande.bind("<Button-1>", moverArduino)
 
         protoboard = tk.PhotoImage(master=janelaSimulador, file="protoboard.png")
         self.labelprotoboard = tk.Label(janelaSimulador, image=protoboard)
         self.labelprotoboard.protoboard = protoboard
-        self.labelprotoboard.place(x=110, y=350)
+        self.labelprotoboard.place(x=60, y=350)
         self.labelprotoboard.bind("<B1-Motion>", self.moverProtoboard)
 
-        janelaSimulador.config(bg="white")
+        simulador_hc06 = tk.PhotoImage(master=janelaSimulador, file="simulador_hc06.png")
+        self.labelsimulador_hc06 = tk.Label(janelaSimulador, image=simulador_hc06)
+        self.labelsimulador_hc06.simulador_hc06 = simulador_hc06
+        self.labelsimulador_hc06.place(x=950, y=100)
+        self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+        self.labelsimulador_hc06.bind("<Double-Button-1>", self.voltarsimulador_hc06)
+    
+        simulador_rele = tk.PhotoImage(master=janelaSimulador, file="simulador_rele.png")
+        self.labelsimulador_rele = tk.Label(janelaSimulador, image=simulador_rele)
+        self.labelsimulador_rele.simulador_rele = simulador_rele
+        self.labelsimulador_rele.place(x=1100, y=100)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_lcd = tk.PhotoImage(master=janelaSimulador, file="simulador_lcd.png")
+        self.labelsimulador_lcd = tk.Label(janelaSimulador, image=simulador_lcd)
+        self.labelsimulador_lcd.simulador_lcd = simulador_lcd
+        self.labelsimulador_lcd.place(x=950, y=210)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_joystick = tk.PhotoImage(master=janelaSimulador, file="simulador_joystick.png")
+        self.labelsimulador_joystick = tk.Label(janelaSimulador, image=simulador_joystick)
+        self.labelsimulador_joystick.simulador_joystick = simulador_joystick
+        self.labelsimulador_joystick.place(x=1100, y=210)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_ultrasonico = tk.PhotoImage(master=janelaSimulador, file="simulador_ultrasonico.png")
+        self.labelsimulador_ultrasonico = tk.Label(janelaSimulador, image=simulador_ultrasonico)
+        self.labelsimulador_ultrasonico.simulador_ultrasonico = simulador_ultrasonico
+        self.labelsimulador_ultrasonico.place(x=950, y=320)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_voz = tk.PhotoImage(master=janelaSimulador, file="simulador_voz.png")
+        self.labelsimulador_voz = tk.Label(janelaSimulador, image=simulador_voz)
+        self.labelsimulador_voz.simulador_voz = simulador_voz
+        self.labelsimulador_voz.place(x=1100, y=320)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_l298n = tk.PhotoImage(master=janelaSimulador, file="simulador_l298n.png")
+        self.labelsimulador_l298n = tk.Label(janelaSimulador, image=simulador_l298n)
+        self.labelsimulador_l298n.simulador_l298n = simulador_l298n
+        self.labelsimulador_l298n.place(x=950, y=430)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        simulador_teclado = tk.PhotoImage(master=janelaSimulador, file="simulador_teclado.png")
+        self.labelsimulador_teclado = tk.Label(janelaSimulador, image=simulador_teclado)
+        self.labelsimulador_teclado.simulador_teclado = simulador_teclado
+        self.labelsimulador_teclado.place(x=1100, y=430)
+        #self.labelsimulador_hc06.bind("<B1-Motion>", self.moversimulador_hc06)
+
+        janelaSimulador.config(bg="white", cursor="dot")
         janelaSimulador.geometry("1255x700+10+2")
         janelaSimulador.title("Simulador")
         janelaSimulador.resizable(width=False, height=False)
         janelaSimulador.mainloop()
 
-    def moverArduino(self, event):
-
-        x, y = event.x, event.y
-        self.labelarduinoGrande.place(x=x, y=y)
+    
+        
 
     def moverProtoboard(self, event):
+        print("teste")
+    
+
+    def moversimulador_hc06(self, event):
 
         x, y = event.x, event.y
-        self.labelprotoboard.place(x=x, y=y)
+        self.labelsimulador_hc06.place(x=x+1000, y=y+50)
 
-  
+    def voltarsimulador_hc06(self, event):
+
+        self.labelsimulador_hc06.place(x=950, y=100)
 
 
 
