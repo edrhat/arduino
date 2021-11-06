@@ -89,16 +89,19 @@ class Tela():
 
 
 
-        tutorial = tk.Button(janela, text="Montagem Interativa")
-        tutorial["font"] = ("Lucida console", "20")
-        tutorial.config(bg="red", foreground="white")
-        tutorial.place(x=250,y=600)
+        self.tutorial = tk.Button(janela, text="Montagem Interativa")
+        self.tutorial["font"] = ("Lucida console", "20")
+        self.tutorial.config(bg="red", foreground="white")
+        self.tutorial.place(x=250,y=600)
+        self.tutorial.bind("<Button-1>", self.iniciarSimulador)
+
 
         self.valores = tk.Button(janela, text="Preços de componentes")
         self.valores["font"] = ("Lucida console", "20")
         self.valores.config(bg="darkgreen", foreground="white")
         self.valores.bind("<Button-1>", self.precos)
         self.valores.place(x=620,y=600)
+        
 
         
        
@@ -455,10 +458,46 @@ class Tela():
 
         self.buscaE.delete(0, "end")
 
-        
+    def iniciarSimulador(self, event):
+
+        janelaSimulador = tk.Tk()
+
+        arduinoGrande = tk.PhotoImage(master=janelaSimulador, file="arduinoGrande.png")
+        self.labelarduinoGrande = tk.Label(janelaSimulador, image=arduinoGrande)
+        self.labelarduinoGrande.arduinoGrande = arduinoGrande
+        self.labelarduinoGrande.place(x=100, y=135)
+        self.labelarduinoGrande.bind("<B1-Motion>", self.moverArduino)
+
+        protoboard = tk.PhotoImage(master=janelaSimulador, file="protoboard.png")
+        self.labelprotoboard = tk.Label(janelaSimulador, image=protoboard)
+        self.labelprotoboard.protoboard = protoboard
+        self.labelprotoboard.place(x=110, y=350)
+        self.labelprotoboard.bind("<B1-Motion>", self.moverProtoboard)
+
+        janelaSimulador.config(bg="white")
+        janelaSimulador.geometry("1255x700+10+2")
+        janelaSimulador.title("Simulador")
+        janelaSimulador.resizable(width=False, height=False)
+        janelaSimulador.mainloop()
+
+    def moverArduino(self, event):
+
+        x, y = event.x, event.y
+        self.labelarduinoGrande.place(x=x, y=y)
+
+    def moverProtoboard(self, event):
+
+        x, y = event.x, event.y
+        self.labelprotoboard.place(x=x, y=y)
+
+  
+
+
 
 janela = tk.Tk()
 Tela(janela)
+
+
 
 janela.config(bg="white")
 janela.geometry("1255x740+10+2")
