@@ -463,12 +463,14 @@ class Tela():
     
     def iniciarSimulador(self, event):
 
-        janelaSimulador = tk.Tk()
+        janelaSimulador = Tk()
+        janelaSimulador.geometry("900x700+100+30")
+        janelaSimulador.title("Simulador de automação")
 
-        self.componentes = tk.Label(janelaSimulador, text="Componentes disponíveis")
+        self.componentes = Label(janelaSimulador, text="Componentes disponíveis")
         self.componentes["font"] = ("Arial black", "17")
         self.componentes.config(bg="white", foreground="red")
-        self.componentes.place(x=920, y=50)
+        self.componentes.place(x=300, y=50)
 
     def moverArduino(self, event):
 
